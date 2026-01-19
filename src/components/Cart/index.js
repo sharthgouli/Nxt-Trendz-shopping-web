@@ -48,6 +48,8 @@ const Cart = () => (
                     <CartItem key={item.id} cartItemDetails={item} />
                   ))}
                 </ul>
+
+                {/* CartSummary contains the ONE Checkout (popup trigger) */}
                 <CartSummary />
               </div>
             )}

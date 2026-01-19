@@ -1,8 +1,6 @@
 import {Link, withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
-
 import CartContext from '../../context/CartContext'
-
 import './index.css'
 
 const Header = props => {
@@ -16,15 +14,13 @@ const Header = props => {
     <CartContext.Consumer>
       {value => {
         const {cartList} = value
-        const cartItemsCount = cartList.length
-
-        return (
-          <>
-            {cartItemsCount > 0 ? (
-              <span className="cart-count-badge">{cartList.length}</span>
-            ) : null}
-          </>
+        const cartItemsCount = cartList.reduce(
+          (total, item) => total + (item.quantity || 0),
+          0,
         )
+        return cartItemsCount > 0 ? (
+          <span className="cart-count-badge">{cartItemsCount}</span>
+        ) : null
       }}
     </CartContext.Consumer>
   )
@@ -40,7 +36,6 @@ const Header = props => {
               alt="website logo"
             />
           </Link>
-
           <button
             type="button"
             className="nav-mobile-btn"
@@ -68,13 +63,11 @@ const Header = props => {
                 Home
               </Link>
             </li>
-
             <li className="nav-menu-item">
               <Link to="/products" className="nav-link">
                 Products
               </Link>
             </li>
-
             <li className="nav-menu-item">
               <Link to="/cart" className="nav-link">
                 Cart
@@ -102,7 +95,6 @@ const Header = props => {
               />
             </Link>
           </li>
-
           <li className="nav-menu-item-mobile">
             <Link to="/products" className="nav-link">
               <img

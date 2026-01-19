@@ -31,3 +31,9 @@
   cursor: pointer;
   font-family: 'Roboto';
 }
+
+.checkout-btn-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}

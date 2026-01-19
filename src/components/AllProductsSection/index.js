@@ -1,6 +1,6 @@
 import {Component} from 'react'
-import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
+import Loader from 'react-loader-spinner'
 
 import FiltersGroup from '../FiltersGroup'
 import ProductCard from '../ProductCard'
@@ -76,7 +76,6 @@ class AllProductsSection extends Component {
       searchInput,
       activeRatingId,
     } = this.state
-
     const apiUrl = `https://apis.ccbp.in/products?sort_by=${activeOptionId}&category=${activeCategoryId}&title_search=${searchInput}&rating=${activeRatingId}`
 
     const options = {

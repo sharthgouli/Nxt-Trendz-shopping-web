@@ -1,6 +1,5 @@
 import AllProductsSection from '../AllProductsSection'
 import PrimeDealsSection from '../PrimeDealsSection'
-
 import Header from '../Header'
 
 import './index.css'

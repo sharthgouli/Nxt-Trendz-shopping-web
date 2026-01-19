@@ -5,7 +5,6 @@ import Loader from 'react-loader-spinner'
 import {BsPlusSquare, BsDashSquare} from 'react-icons/bs'
 
 import CartContext from '../../context/CartContext'
-
 import Header from '../Header'
 import SimilarProductItem from '../SimilarProductItem'
 
@@ -47,9 +46,8 @@ class ProductItemDetails extends Component {
     const {params} = match
     const {id} = params
 
-    this.setState({
-      apiStatus: apiStatusConstants.inProgress,
-    })
+    this.setState({apiStatus: apiStatusConstants.inProgress})
+
     const jwtToken = Cookies.get('jwt_token')
     const apiUrl = `https://apis.ccbp.in/products/${id}`
     const options = {
@@ -63,18 +61,17 @@ class ProductItemDetails extends Component {
       const fetchedData = await response.json()
       const updatedData = this.getFormattedData(fetchedData)
       const updatedSimilarProductsData = fetchedData.similar_products.map(
-        eachSimilarProduct => this.getFormattedData(eachSimilarProduct),
+        each => this.getFormattedData(each),
       )
       this.setState({
         productData: updatedData,
         similarProductsData: updatedSimilarProductsData,
         apiStatus: apiStatusConstants.success,
       })
-    }
-    if (response.status === 404) {
-      this.setState({
-        apiStatus: apiStatusConstants.failure,
-      })
+    } else if (response.status === 404) {
+      this.setState({apiStatus: apiStatusConstants.failure})
+    } else {
+      this.setState({apiStatus: apiStatusConstants.failure})
     }
   }
 

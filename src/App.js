@@ -18,6 +18,7 @@ class App extends Component {
   addCartItem = product => {
     const {cartList} = this.state
     const exists = cartList.find(item => item.id === product.id)
+
     if (exists) {
       this.setState(prev => ({
         cartList: prev.cartList.map(item =>
@@ -70,6 +71,7 @@ class App extends Component {
 
   render() {
     const {cartList} = this.state
+
     return (
       <CartContext.Provider
         value={{
@@ -87,12 +89,12 @@ class App extends Component {
           <ProtectedRoute exact path="/products" component={Products} />
           <ProtectedRoute
             exact
-            path="/products/:id"
+            path="/product-details/:id"
             component={ProductItemDetails}
           />
           <ProtectedRoute exact path="/cart" component={Cart} />
           <Route path="/not-found" component={NotFound} />
-          <Redirect to="not-found" />
+          <Redirect to="/not-found" />
         </Switch>
       </CartContext.Provider>
     )
